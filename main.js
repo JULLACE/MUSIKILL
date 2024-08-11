@@ -29,19 +29,18 @@ const SONGLIST = {
     "7-3-2": "./songs/7-3-2.mp3",
     "7-4":   "./songs/7-4.mp3",
 };
-
 const KEYS = Object.keys(SONGLIST);
 
 let startTime = 0;
 let addTime = 1;
+let songLevel = "";
 
-player.src = `${SONGLIST[KEYS[Math.floor(Math.random() * KEYS.length)]]}`
-player.load();
-player.volume = 0.2;
-
-volBar.addEventListener("input", () => {
-    player.volume = volBar.value / 100;
-})
+function chooseSong() {
+    songLevel = KEYS[Math.floor(Math.random() * KEYS.length)];
+    player.src = `${SONGLIST[songLevel]}`;
+    player.load();
+    player.volume = 0.2;
+}
 
 // Funky event handling for randomly choosing song then loading. 
 function setupPlayer() {
@@ -50,9 +49,10 @@ function setupPlayer() {
     player.removeEventListener("canplaythrough", setupPlayer);
 }
 
+chooseSong();
 player.addEventListener("canplaythrough", setupPlayer, {once: true});
 
-player.addEventListener("timeupdate", (e) => {
+player.addEventListener("timeupdate", () => {
     if (player.currentTime >= startTime + addTime) {
         player.pause();
         player.currentTime = startTime;
@@ -70,13 +70,11 @@ pause.addEventListener("click", () => {
 
 // Change song, reset addTimers, new startTime, etc.
 change.addEventListener("click", () => {
-    player.src = `${SONGLIST[KEYS[Math.floor(Math.random() * KEYS.length)]]}`;
-    player.load();
+    chooseSong();
 
     addTime = 1;
     add.textContent = `Add +${addTime} seconds`;
     add.disabled = false;
-    
 
     player.addEventListener("canplaythrough", setupPlayer, {once: true});
 });
@@ -87,4 +85,9 @@ add.addEventListener("click", () => {
         add.textContent = `Add +${addTime} seconds`
     else
         add.disabled = true;
+});
+
+// Volume Bar
+volBar.addEventListener("input", () => {
+    player.volume = volBar.value / 100;
 });
