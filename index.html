@@ -13,9 +13,11 @@
     <div> 
         <button id="play-button">Play</button> 
         <button id="pause-button">Pause</button>
+        <button id="add-button">Add +1 seconds</button>
+        <button id="change-button">Change [DEBUG]</button>
     </div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="20" oninput="document.getElementById('player').volume = document.querySelector('input').value / 100">
+        <input id="volume-bar" type="range" min="1" max="100" value="20">
       </div>
     </div>
 
