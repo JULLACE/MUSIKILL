@@ -9,16 +9,25 @@
 <body>
     <h1>MUSIKILL</h1>
 
-    <audio id="player" src="#"></audio>
-    <div> 
+    <div class="choices">
+        <div class="level">
+            <img id="0-1" src="./levels/0-1.png">
+        </div>
+        <div class="level">
+            <img id="0-2" src="./levels/0-2.png">
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="media">
+        <audio id="player" src="#"></audio>
         <button id="play-button">Play</button> 
         <button id="pause-button">Pause</button>
         <button id="add-button">Add +1 seconds</button>
         <button id="change-button">Change [DEBUG]</button>
-    </div>
-    <div class="slidecontainer">
         <input id="volume-bar" type="range" min="1" max="100" value="20">
-      </div>
+        <progress id="seek-bar" max="1" value="0"></progress>
     </div>
 
     <script src="main.js">

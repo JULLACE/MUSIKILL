@@ -1,9 +1,54 @@
-body {
-    background-color: rgb(116, 2, 2);
+body, html {
+    background-color: rgb(88, 1, 1);
     color: white;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
+
+    height: 100%;
+}
+
+
+.choices {
+    display: flex;
+    background-color: black;
+    margin: 12px;
+    padding: 60px;
+}
+
+.level {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    gap: 12px;
+}
+
+.level > img {
+    height: 34vw;
+    width: 38vw;
+
+}
+
+.level > img:hover {
+    border: solid thin white;
+    transition: 0.3s;
+}
+
+.level > p1 {
+    text-align: center;
+}
+
+.pic {
+    width: 200px;
+    height: 120px;
+    background-color: gray;
+    border: solid;
+}
+
+.spacer {
+}
+
+.media {
 }
