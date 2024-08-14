@@ -10,12 +10,21 @@ body, html {
     height: 100%;
 }
 
+.main {
+    background-color: black;
+    padding: 20px;
+    font-size: 2.2rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 
 .choices {
     display: flex;
     background-color: black;
     margin: 12px;
-    padding: 60px;
+    padding: 20px;
+    flex-grow: 1;
 }
 
 .level {
@@ -26,9 +35,9 @@ body, html {
 }
 
 .level > img {
-    height: 34vw;
-    width: 38vw;
-
+    height: 16vw;
+    width: 18vw;
+    border: solid thin black;
 }
 
 .level > img:hover {
@@ -45,10 +54,4 @@ body, html {
     height: 120px;
     background-color: gray;
     border: solid;
-}
-
-.spacer {
-}
-
-.media {
 }
