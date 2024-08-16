@@ -126,6 +126,8 @@ addEventListener("click", (event) => {
     else 
         lvl = songLevel;
 
-    if (event.target.id == lvl)
+    const choice = event.target.closest(".level")
+    if (choice && choice.id == lvl) {
         alert("YOU WIN");
+    }
 });
