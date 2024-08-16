@@ -9,6 +9,7 @@ body, html {
     font-family: "VCR-OSD", serif;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 
     display: flex;
     justify-content: space-around;
@@ -22,14 +23,21 @@ body, html {
     width: 100%;
     background-color: black;
     padding: 20px;
+    height: 75%;
+    overflow: auto;
+
     font-size: 2.2rem;
     text-align: justify;
+}
+
+.main > hr {
+    width: 98%;
+    margin: 8px;
 }
 
 .layer {
     margin: 0 12px;
 }
-
 
 .choices {
     background-color: black;
@@ -66,7 +74,18 @@ body, html {
     margin: 0px;
 }
 
-hr {
-    width: 100%;
+.level > hr {
+    width: 98%;
     margin: 0px;
+}
+
+.song-container {
+    display: flex;
+    gap: 4px;
+}
+
+.song-box {
+    border: solid thick white;
+    border-radius: 15%;
+    padding: 0.75vw;
 }
