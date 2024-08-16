@@ -10,6 +10,8 @@ body, html {
     height: 100%;
 }
 
+/* Main Level Selection */
+
 .main {
     background-color: black;
     padding: 20px;
@@ -20,38 +22,42 @@ body, html {
 
 
 .choices {
-    display: flex;
     background-color: black;
     margin: 12px;
     padding: 20px;
+
+    display: flex;
     flex-grow: 1;
+    justify-content: space-evenly;    
 }
 
 .level {
     display: flex;
     flex-direction: column;
-    padding: 2px;
-    gap: 12px;
-}
+    align-items: center;
 
-.level > img {
-    height: 16vw;
-    width: 18vw;
+    padding: 12px;
+    gap: 12px;
     border: solid thin black;
 }
 
-.level > img:hover {
+.level > img {
+    height: 10vw;
+    width: 12vw;
+}
+
+.level:hover {
     border: solid thin white;
     transition: 0.3s;
 }
 
-.level > p1 {
+.level > p {
+    font-size: 18px;
     text-align: center;
+    margin: 0px;
 }
 
-.pic {
-    width: 200px;
-    height: 120px;
-    background-color: gray;
-    border: solid;
+hr {
+    width: 100%;
+    margin: 0px;
 }
