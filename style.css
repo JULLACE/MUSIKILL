@@ -1,29 +1,38 @@
+@font-face {
+    font-family: VCR-OSD;
+    src: url(./fonts/VCR_OSD_MONO_1.001.ttf)
+}
+
 body, html {
     background-color: rgb(88, 1, 1);
     color: white;
+    font-family: "VCR-OSD", serif;
+    height: 100%;
+    width: 100%;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-
-    height: 100%;
 }
 
 /* Main Level Selection */
 
 .main {
+    width: 100%;
     background-color: black;
     padding: 20px;
     font-size: 2.2rem;
     text-align: justify;
-    text-justify: inter-word;
+}
+
+.layer {
+    margin: 0 12px;
 }
 
 
 .choices {
     background-color: black;
-    margin: 12px;
     padding: 20px;
 
     display: flex;
@@ -42,8 +51,8 @@ body, html {
 }
 
 .level > img {
-    height: 10vw;
-    width: 12vw;
+    height: 11vw;
+    width: 13vw;
 }
 
 .level:hover {
@@ -52,7 +61,7 @@ body, html {
 }
 
 .level > p {
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     margin: 0px;
 }

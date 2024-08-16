@@ -12,9 +12,9 @@ const SONGLIST = {
     "0-3": "./songs/0-1.mp3",  
     "0-4": "./songs/0-2.mp3",  
     "0-5": "./songs/0-5.mp3",   
-// 
-    // "1-1-1": 
-    // "1-1-2": 
+
+    "1-1-1": "./songs/1-1-1.mp3", 
+    "1-1-2": "./songs/1-1-2.mp3",
     // "1-2-1": 
     // "1-2-2": 
     // "1-3":   
@@ -54,7 +54,7 @@ let addTime = 1;
 let songLevel = "";
 
 function chooseSong() {
-    currVol = player.volume;
+    let currVol = player.volume;
     songLevel = KEYS[Math.floor(Math.random() * KEYS.length)];
 
     player.src = `${SONGLIST[songLevel]}`;
@@ -70,6 +70,7 @@ function setupPlayer() {
 }
 
 chooseSong();
+player.volume = 0.2;
 player.addEventListener("canplaythrough", setupPlayer, {once: true});
 
 player.addEventListener("timeupdate", () => {
@@ -81,7 +82,6 @@ player.addEventListener("timeupdate", () => {
     // Avoid console spamming errors
     if (player.readyState == 4)
         seekBar.value = ((player.currentTime - startTime) / 15);
-
 });
 
 // Button logic
@@ -100,7 +100,6 @@ change.addEventListener("click", () => {
     addTime = 1;
     add.textContent = `Add +${addTime} seconds`;
     add.disabled = false;
-
 
     player.addEventListener("canplaythrough", setupPlayer, {once: true});
 });
