@@ -120,14 +120,21 @@ volBar.addEventListener("input", () => {
 
 addEventListener("click", (event) => {
     var lvl = ""
-    console.log(event.target);
-    if (songLevel.length != 3)
-        lvl = songLevel.slice(0, -1);
+    var boxNum = 0;
+
+    if (songLevel.length != 3) {
+        boxNum = parseInt(songLevel.slice(-1)) - 1;
+        lvl = songLevel.slice(0, -2);
+    }
     else 
         lvl = songLevel;
 
     const choice = event.target.closest(".level")
     if (choice && choice.id == lvl) {
         alert("YOU WIN");
+
+        console.log(boxNum);
+        const box = choice.querySelectorAll(".song-box")[boxNum];
+        box.style.backgroundColor = "white";
     }
 });
