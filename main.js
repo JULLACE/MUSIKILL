@@ -48,6 +48,7 @@ const SONGLIST = {
     // "7-4":   "./songs/7-4.mp3",
 };
 const KEYS = Object.keys(SONGLIST);
+let songTracker = KEYS;
 
 let startTime = 0;
 let addTime = 1;
@@ -55,7 +56,10 @@ let songLevel = "";
 
 function chooseSong() {
     let currVol = player.volume;
-    songLevel = KEYS[Math.floor(Math.random() * KEYS.length)];
+
+    var index = Math.floor(Math.random() * songTracker.length);
+    songLevel = songTracker[index];
+    songTracker.splice(index, 1);
 
     player.src = `${SONGLIST[songLevel]}`;
     player.load();
@@ -67,6 +71,16 @@ function setupPlayer() {
     startTime = Math.floor(Math.random() * player.duration);
     player.currentTime = startTime;
     player.removeEventListener("canplaythrough", setupPlayer);
+}
+
+function changeSong() {
+    chooseSong();
+
+    addTime = 1;
+    add.textContent = `Add +${addTime} seconds`;
+    add.disabled = false;
+
+    player.addEventListener("canplaythrough", setupPlayer, {once: true});
 }
 
 chooseSong();
@@ -94,15 +108,7 @@ pause.addEventListener("click", () => {
 });
 
 // Change song, reset addTimers, new startTime, etc.
-change.addEventListener("click", () => {
-    chooseSong();
-
-    addTime = 1;
-    add.textContent = `Add +${addTime} seconds`;
-    add.disabled = false;
-
-    player.addEventListener("canplaythrough", setupPlayer, {once: true});
-});
+change.addEventListener("click", changeSong);
 
 add.addEventListener("click", () => {
     addTime += addTime;
@@ -133,8 +139,12 @@ addEventListener("click", (event) => {
     if (choice && choice.id == lvl) {
         alert("YOU WIN");
 
-        console.log(boxNum);
         const box = choice.querySelectorAll(".song-box")[boxNum];
         box.style.backgroundColor = "white";
+        changeSong();
+        play.focus();
+    }
+    else if (choice && choice.id != lvl) {
+        // Lose --> Add one second?
     }
 });
