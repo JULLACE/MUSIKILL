@@ -6,6 +6,10 @@ const player = document.getElementById("player");
 const volBar = document.getElementById("volume-bar");
 const seekBar = document.getElementById("seek-bar");
 
+const searchBar = document.getElementById("guess-box");
+const resultList = document.getElementById("search-list");
+
+const LEVELS = document.querySelectorAll("div.level > p");
 const SONGLIST = {
     "0-1": "./songs/0-1.mp3",   
     "0-2": "./songs/0-2.mp3",    
@@ -55,7 +59,7 @@ let addTime = 1;
 let songLevel = "";
 
 function chooseSong() {
-    let currVol = player.volume;
+    var currVol = player.volume;
 
     var index = Math.floor(Math.random() * songTracker.length);
     songLevel = songTracker[index];
@@ -123,7 +127,7 @@ volBar.addEventListener("input", () => {
     player.volume = volBar.value / 100;
 });
 
-
+// Song Guess
 addEventListener("click", (event) => {
     var lvl = ""
     var boxNum = 0;
@@ -147,4 +151,16 @@ addEventListener("click", (event) => {
     else if (choice && choice.id != lvl) {
         // Lose --> Add one second?
     }
+});
+
+// Search functionality
+searchBar.addEventListener("keyup", (event) => {
+    var list = '';
+    for (i = 0; i < LEVELS.length; i++) {
+        if (LEVELS[i].innerText.includes(searchBar.value.toUpperCase())) {
+            list += LEVELS[i].innerText;
+            list += ' ';
+        }
+    }
+    console.log(list);
 });
