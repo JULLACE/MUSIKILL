@@ -7,7 +7,7 @@ const volBar = document.getElementById("volume-bar");
 const seekBar = document.getElementById("seek-bar");
 
 const searchBar = document.getElementById("guess-box");
-const resultList = document.getElementById("search-list");
+const resultList = document.getElementById("guess-list");
 
 const LEVELS = document.querySelectorAll("div.level > p");
 const SONGLIST = {
@@ -154,13 +154,27 @@ addEventListener("click", (event) => {
 });
 
 // Search functionality
-searchBar.addEventListener("keyup", (event) => {
-    var list = '';
-    for (i = 0; i < LEVELS.length; i++) {
-        if (LEVELS[i].innerText.includes(searchBar.value.toUpperCase())) {
-            list += LEVELS[i].innerText;
-            list += ' ';
+searchBar.addEventListener("keyup", () => {
+    var list = [];
+
+    if (!searchBar.value.length) {
+        resultList.style.display = "none";
+    }
+    else {
+        // Displaying and clearing children
+        resultList.style.display = "block";
+        resultList.innerHTML = '';
+
+        for (i = 0; i < LEVELS.length; i++) {
+            if (LEVELS[i].innerText.includes(searchBar.value.toUpperCase())) {
+                // list.push(LEVELS[i].innerText);
+                const li = document.createElement('li');
+                li.innerText = LEVELS[i].innerText;
+                resultList.appendChild(li);
+            }
         }
     }
-    console.log(list);
+    
+    
+
 });
