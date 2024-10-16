@@ -37,13 +37,15 @@ body, html {
 
 .layer {
     margin: 0 12px;
+    font-size: 90%;
 }
 
 .choices {
     display: flex;
     flex-grow: 1;
     flex-wrap: wrap;
-    justify-content: space-evenly;    
+    justify-content: center;
+    gap: 24px;
 
     background-color: black;
     padding: 20px;
@@ -67,7 +69,7 @@ body, html {
 }
 
 .level:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
     border: solid thin white;
     transition: 0.3s;
 }
@@ -95,6 +97,7 @@ body, html {
 }
 
 .guess {
+    position: relative;
     margin: 12px;
     background-color: black;
     width: 350px;
@@ -118,14 +121,22 @@ body, html {
 }
 
 .search-list {
+    position: absolute;
+    bottom: 100%;
+    min-width: 100%;
     max-height: 280px;
 }
 
 .search-list > li {
+    background-color: black;
     color: white;
     list-style: none;
-    padding: 8px 12px;
+    padding: 10px 12px;
+
+    border-color: white;
     border-radius: 3px;
+    border: solid thin white;
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.1);
 }
 
 ::selection{

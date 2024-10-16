@@ -167,11 +167,12 @@ searchBar.addEventListener("keyup", () => {
 
         for (i = 0; i < LEVELS.length; i++) {
             if (LEVELS[i].innerText.includes(searchBar.value.toUpperCase())) {
-                // list.push(LEVELS[i].innerText);
+                list.push(LEVELS[i].innerText);
                 const li = document.createElement('li');
                 li.innerText = LEVELS[i].innerText;
                 resultList.appendChild(li);
             }
+            if (list.length == 6) break;
         }
     }
     
