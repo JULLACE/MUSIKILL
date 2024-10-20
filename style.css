@@ -37,15 +37,14 @@ body, html {
 
 .layer {
     margin: 0 12px;
-    font-size: 90%;
+    font-size: 1.5rem;
 }
 
 .choices {
     display: flex;
-    flex-grow: 1;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 24px;
+    gap: 8px;
 
     background-color: black;
     padding: 20px;
@@ -55,6 +54,7 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1 1 0;    
 
     background-color: rgba(12, 12, 12, 0.4);
     border-radius: 1%;
@@ -64,8 +64,8 @@ body, html {
 }
 
 .level > img {
-    height: 100%;
-    width: auto;
+    height: 8.5rem;
+    width: auto;    
 }
 
 .level:hover {
@@ -75,7 +75,7 @@ body, html {
 }
 
 .level > p {
-    font-size: 65%;
+    font-size: 1rem;
     text-align: center;
     margin: 0px;
 }
@@ -93,7 +93,7 @@ body, html {
 .song-box {
     border: solid thick white;
     border-radius: 15%;
-    padding: 15px;
+    padding: 10px;
 }
 
 .guess {
