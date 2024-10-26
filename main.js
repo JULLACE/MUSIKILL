@@ -5,6 +5,7 @@ const change = document.getElementById("change-button");
 const player = document.getElementById("player");
 const volBar = document.getElementById("volume-bar");
 const seekBar = document.getElementById("seek-bar");
+const fillBar = document.getElementById("fill-bar");
 
 const searchBar = document.getElementById("guess-box");
 const resultList = document.getElementById("guess-list");
@@ -92,23 +93,37 @@ player.volume = 0.2;
 player.addEventListener("canplaythrough", setupPlayer, {once: true});
 
 player.addEventListener("timeupdate", () => {
+
+});
+
+function updateBar() {
     if (player.currentTime >= startTime + addTime) {
         player.pause();
         player.currentTime = startTime;
+
+        play.textContent = "Play";
     }
 
     // Avoid console spamming errors
-    if (player.readyState == 4)
+    if (player.readyState == 4) {
         seekBar.value = ((player.currentTime - startTime) / 15);
-});
+        // fillBar.style.width = ((player.currentTime - startTime) / 15) * 100 + "%";
+    }
+    requestAnimationFrame(updateBar);
+}
+
+requestAnimationFrame(updateBar);
 
 // Button logic
 play.addEventListener("click", () => {
-    player.play();
-});
-
-pause.addEventListener("click", () => {
-    player.pause();
+    if (player.paused) {
+        player.play();
+        play.textContent = "Pause";
+    }
+    else {
+        player.pause();
+        play.textContent = "Play";
+    }
 });
 
 // Change song, reset addTimers, new startTime, etc.

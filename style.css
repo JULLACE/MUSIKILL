@@ -64,7 +64,7 @@ body, html {
 }
 
 .level > img {
-    height: 8.5rem;
+    height: 9.5rem;
     width: auto;    
 }
 
@@ -145,5 +145,44 @@ body, html {
 }
 
 .media {
+    display: flex;
+    flex-direction: column;
     margin: 8px;
+}
+
+.bar {
+    position: relative;
+    width: 50%;
+}
+
+progress {
+    width: 100%;
+    -webkit-appearance: none; -moz-appearance: none; appearance: none;
+}
+
+/* .empty-seek {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 0px;
+}
+
+.fill-seek {
+    position: absolute;
+    background-color: red;
+    left: 0px;
+    height: 100%;
+} */
+
+.division-1 {
+    background-color: rgba(138, 138, 138, 0.8);
+    position: absolute;
+    padding: 10px 5px;
+    left: 6.25%;
+}
+
+.division-2 {
+    background-color: rgba(138, 138, 138, 0.8);
+    position: absolute;
+    padding: 10px 5px;
+    left: 12.5%;
 }

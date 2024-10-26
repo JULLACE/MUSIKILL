@@ -161,14 +161,20 @@
         <!-- <button>Guess</button> -->
     </div>
 
+    <div class="bar">
+        <!-- <div id="fill-bar" class="fill-seek"></div> -->
+        <div class="division-1"></div>
+        <div class="division-2"></div>
+        <progress id="seek-bar" max="1" value="0"></progress>
+        <!-- <div class="empty-seek"></div> -->
+    </div>
+
     <div class="media">
         <audio id="player" src="#"></audio>
-        <button id="play-button">Play</button> 
-        <button id="pause-button">Pause</button>
-        <button id="add-button">Add +1 seconds</button>
         <button id="change-button">Change [DEBUG]</button>
+        <button id="play-button">Play</button> 
+        <button id="add-button">Add +1 seconds</button>
         <input id="volume-bar" type="range" min="1" max="100" value="20">
-        <progress id="seek-bar" max="1" value="0"></progress>
     </div>
 
     <script src="main.js">
