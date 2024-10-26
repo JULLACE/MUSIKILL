@@ -155,34 +155,36 @@ body, html {
     width: 50%;
 }
 
-progress {
+/* progress {
     width: 100%;
     -webkit-appearance: none; -moz-appearance: none; appearance: none;
-}
+} */
 
-/* .empty-seek {
+.empty-seek {
     width: 100%;
     background-color: #fff;
     padding: 10px 0px;
 }
 
+.empty-seek-bg {
+    position: fixed;
+    width: 200%;
+    background-color: #53000054;    
+    padding: 10px 0px;
+    right: 0px;
+}
+
 .fill-seek {
     position: absolute;
-    background-color: red;
+    background-color: rgb(0, 0, 0);
     left: 0px;
     height: 100%;
-} */
+}
 
-.division-1 {
-    background-color: rgba(138, 138, 138, 0.8);
+.division {
+    background-color: rgba(14, 1, 1, 0.8);
     position: absolute;
     padding: 10px 5px;
     left: 6.25%;
 }
 
-.division-2 {
-    background-color: rgba(138, 138, 138, 0.8);
-    position: absolute;
-    padding: 10px 5px;
-    left: 12.5%;
-}

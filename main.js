@@ -1,11 +1,11 @@
 const play = document.getElementById("play-button");
-const pause = document.getElementById("pause-button");
 const add = document.getElementById("add-button");
 const change = document.getElementById("change-button");
 const player = document.getElementById("player");
 const volBar = document.getElementById("volume-bar");
 const seekBar = document.getElementById("seek-bar");
 const fillBar = document.getElementById("fill-bar");
+const barDiv = document.getElementById("bars-holder")
 
 const searchBar = document.getElementById("guess-box");
 const resultList = document.getElementById("guess-list");
@@ -78,6 +78,21 @@ function setupPlayer() {
     player.removeEventListener("canplaythrough", setupPlayer);
 }
 
+function updateBar() {
+    if (player.currentTime >= startTime + addTime) {
+        player.pause();
+        player.currentTime = startTime;
+
+        play.textContent = "Play";
+    }
+
+    // Avoid console spamming errors
+    if (player.readyState == 4) {
+        fillBar.style.width = ((player.currentTime - startTime) / 15) * 100 + "%";
+    }
+    requestAnimationFrame(updateBar);
+}
+
 function changeSong() {
     chooseSong();
 
@@ -92,27 +107,16 @@ chooseSong();
 player.volume = 0.2;
 player.addEventListener("canplaythrough", setupPlayer, {once: true});
 
-player.addEventListener("timeupdate", () => {
-
-});
-
-function updateBar() {
-    if (player.currentTime >= startTime + addTime) {
-        player.pause();
-        player.currentTime = startTime;
-
-        play.textContent = "Play";
-    }
-
-    // Avoid console spamming errors
-    if (player.readyState == 4) {
-        seekBar.value = ((player.currentTime - startTime) / 15);
-        // fillBar.style.width = ((player.currentTime - startTime) / 15) * 100 + "%";
-    }
-    requestAnimationFrame(updateBar);
-}
-
 requestAnimationFrame(updateBar);
+
+// Inserts dividers into audio progress bar
+for (i = 1; i < 16; i += i) {
+    const divider = document.createElement("div");
+    divider.className = "division";
+    divider.style.left = (i / 15) * 100 + "%";
+
+    barDiv.insertBefore(divider, barDiv.firstChild);
+}
 
 // Button logic
 play.addEventListener("click", () => {
