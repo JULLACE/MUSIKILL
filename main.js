@@ -10,7 +10,9 @@ const barDiv = document.getElementById("bars-holder")
 const searchBar = document.getElementById("guess-box");
 const resultList = document.getElementById("guess-list");
 
-const LEVELS = document.querySelectorAll("div.level > p");
+const LEVELS = document.querySelectorAll("div.level");
+const LEVELS_P = document.querySelectorAll("div.level > p");
+
 const SONGLIST = {
     "0-1": "./songs/0-1.mp3",   
     "0-2": "./songs/0-2.mp3",    
@@ -25,23 +27,32 @@ const SONGLIST = {
     "1-3":   "./songs/1-3.mp3",
     // "1-4-1": "",
     "1-4-2": "./songs/1-4-2.mp3",
-// 
+
     "2-1":   "./songs/2-1.mp3",
     "2-2":   "./songs/2-2.mp3",
     "2-3":   "./songs/2-3.mp3",
     "2-4":   "./songs/2-4.mp3",
-// 
+
     "3-1-1": "./songs/3-1-1.mp3",
     "3-1-2": "./songs/3-1-2.mp3",
     // "3-2-1": "",
     "3-2-2": "./songs/3-2-2.mp3",
-// 
-    // "4-1":   
-    // "4-2":   
-    // "4-3":   
-    // "4-4":   
-// 
-    // "5-1":   
+
+    "4-1": "./songs/4-1.mp3",
+    "4-2": "./songs/4-2.mp3",  
+    "4-3": "./songs/4-3.mp3",  
+    "4-4": "./songs/4-4.mp3", 
+
+    "5-1": "./songs/5-1.mp3", 
+    "5-2": "./songs/5-2.mp3", 
+    "5-3-1": "./songs/5-3-1.mp3",
+    "5-3-2": "./songs/5-3-2.mp3", 
+    "5-4": "./songs/5-4.mp3", 
+
+    "6-1-1": "./songs/6-1-1.mp3", 
+    "6-1-2": "./songs/6-1-2.mp3", 
+    "6-2-1": "./songs/6-2-1.mp3", 
+    "6-2-2": "./songs/6-2-2.mp3", 
 
     // "7-1-1": "./songs/7-1-1.mp3",
     // "7-1-2": "./songs/7-1-2.mp3",
@@ -88,7 +99,7 @@ function updateBar() {
 
     // Avoid console spamming errors
     if (player.readyState == 4) {
-        fillBar.style.width = ((player.currentTime - startTime) / 15) * 100 + "%";
+        fillBar.style.width = ((player.currentTime - startTime) / 16) * 100 + "%";
     }
     requestAnimationFrame(updateBar);
 }
@@ -113,7 +124,8 @@ requestAnimationFrame(updateBar);
 for (i = 1; i < 16; i += i) {
     const divider = document.createElement("div");
     divider.className = "division";
-    divider.style.left = (i / 15) * 100 + "%";
+    divider.style.left = (i / 16) * 100 + "%";
+    divider.id = `d-${i}`;
 
     barDiv.insertBefore(divider, barDiv.firstChild);
 }
@@ -185,13 +197,22 @@ searchBar.addEventListener("keyup", () => {
         resultList.innerHTML = '';
 
         for (i = 0; i < LEVELS.length; i++) {
-            if (LEVELS[i].innerText.includes(searchBar.value.toUpperCase())) {
-                list.push(LEVELS[i].innerText);
-                const li = document.createElement('li');
-                li.innerText = LEVELS[i].innerText;
-                resultList.appendChild(li);
+            if (LEVELS_P[i].innerText.includes(searchBar.value.toUpperCase())) {
+                const validLevel = LEVELS[i];
+                var lvlP = LEVELS_P[i];
+                list.push(lvlP);
+
+                const res = document.createElement('div');
+                res.innerText = lvlP.innerText;
+                
+                res.addEventListener("click", (e) => {
+                    validLevel.click()
+                });
+
+                resultList.appendChild(res);
             }
-            if (list.length == 6) break;
+
+            if (list.length == 5) break;
         }
     }
     
