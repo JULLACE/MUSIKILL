@@ -182,7 +182,7 @@ body, html {
     border-radius: 4px;
     position: absolute;
     background-color: rgb(87, 0, 0);
-    left: 0px;
+    left: 0;
     height: 100%;
 }
 

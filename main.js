@@ -127,7 +127,7 @@ for (i = 1; i < 16; i += i) {
     divider.style.left = (i / 16) * 100 + "%";
     divider.id = `d-${i}`;
 
-    barDiv.insertBefore(divider, barDiv.firstChild);
+    barDiv.insertBefore(divider, barDiv.lastElementChild);
 }
 
 // Button logic
