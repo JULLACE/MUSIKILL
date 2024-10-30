@@ -14,5 +14,6 @@ Based off a fusion of the popular game "Ultrakill" and music game "Heardle", you
 - Custom Audio Player (now with volume control!)
 - Unique Design (based off the game's level selection)
 - Responsive Design (now for iPhone 3)
+- Working Search Bar (this sucked getting to work!)
 - And much more!
 
