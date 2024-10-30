@@ -18,6 +18,22 @@ body, html {
     gap: 5px;
 }
 
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.head > p {
+    margin-left: auto;
+}
+
+::selection{
+    color: #fff;
+    background: #ff4a4a;
+}
+
 /* Main Level Selection */
 
 .main {
@@ -65,8 +81,9 @@ body, html {
 }
 
 .level > img {
-    height: 13rem;
-    width: auto;    
+    /* height: 13rem; */
+    width: 13rem;    
+    height: auto;
 }
 
 .level:hover {
@@ -147,14 +164,8 @@ body, html {
     transition: 0.3s;
 }
 
-::selection{
-    color: #fff;
-    background: #ff4a4a;
-}
-
 .media {
     display: flex;
-    flex-direction: column;
     margin: 8px;
 }
 

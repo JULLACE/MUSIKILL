@@ -5,13 +5,15 @@ const player = document.getElementById("player");
 const volBar = document.getElementById("volume-bar");
 const seekBar = document.getElementById("seek-bar");
 const fillBar = document.getElementById("fill-bar");
-const barDiv = document.getElementById("bars-holder")
+const barDiv = document.getElementById("bars-holder");
+const pointDisplay = document.getElementById("point-display");
 
 const searchBar = document.getElementById("guess-box");
 const resultList = document.getElementById("guess-list");
 
 const LEVELS = document.querySelectorAll("div.level");
 const LEVELS_P = document.querySelectorAll("div.level > p");
+
 
 const SONGLIST = {
     "0-1": "./songs/0-1.mp3",   
@@ -69,6 +71,7 @@ let songTracker = KEYS;
 let startTime = 0;
 let addTime = 1;
 let songLevel = "";
+let points = 0;
 
 function chooseSong() {
     var currVol = player.volume;
@@ -171,16 +174,25 @@ addEventListener("click", (event) => {
         lvl = songLevel;
 
     const choice = event.target.closest(".level")
+
     if (choice && choice.id == lvl) {
+        choice.scrollIntoView({behavior: "smooth"});
+        choice.focus();
         alert("YOU WIN");
 
+        points += Math.round((100 / 33) / addTime);
+        pointDisplay.innerText = `${points} / 100`;
+    
         const box = choice.querySelectorAll(".song-box")[boxNum];
         box.style.backgroundColor = "white";
         changeSong();
+    
         play.focus();
     }
     else if (choice && choice.id != lvl) {
         // Lose --> Add one second?
+        choice.scrollIntoView({behavior: "smooth"});
+        choice.focus();
     }
 });
 
