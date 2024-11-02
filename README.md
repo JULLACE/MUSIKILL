@@ -1,4 +1,4 @@
-# MUSKILL
+# MUSIKILL
 ![Image of Muskill](./img/main.png)
 
 CAN YOU GUESS THE SONG IN *JUST A SECOND*?
