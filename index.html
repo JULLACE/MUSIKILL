@@ -9,7 +9,7 @@
 <body>
     <div class="head">
         <h1>MUSIKILL</h1>
-        <p id="point-display">0 / 100</p>
+        <p id="point-display">0 / 100 pts</p>
     </div>
 
     <div class="main">
@@ -270,7 +270,15 @@
         <button id="change-button">Change [DEBUG]</button>
         <button id="play-button">Play</button> 
         <button id="add-button">Add +1 seconds</button>
+        <button id="modal-button"> Open Modal </button>
         <input id="volume-bar" type="range" min="1" max="100" value="20">
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p> wattup bitch </p>
+        </div>
     </div>
 
     <script src="main.js">

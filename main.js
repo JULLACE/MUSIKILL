@@ -6,6 +6,8 @@ const volBar = document.getElementById("volume-bar");
 const seekBar = document.getElementById("seek-bar");
 const fillBar = document.getElementById("fill-bar");
 const barDiv = document.getElementById("bars-holder");
+
+const modalButton = document.getElementById("modal-button")
 const pointDisplay = document.getElementById("point-display");
 
 const searchBar = document.getElementById("guess-box");
@@ -27,7 +29,7 @@ const SONGLIST = {
     "1-2-1": "./songs/1-1-1.mp3", 
     "1-2-2": "./songs/1-2-2.mp3",
     "1-3":   "./songs/1-3.mp3",
-    // "1-4-1": "",
+    "1-4-1": "./songs/1-4-1.mp3",
     "1-4-2": "./songs/1-4-2.mp3",
 
     "2-1":   "./songs/2-1.mp3",
@@ -88,6 +90,9 @@ function chooseSong() {
 // Funky event handling for randomly choosing song then loading. 
 function setupPlayer() {
     startTime = Math.floor(Math.random() * player.duration);
+    if (player.duration - startTime < 16)
+        startTime = player.duration - 16;
+
     player.currentTime = startTime;
     player.removeEventListener("canplaythrough", setupPlayer);
 }
@@ -109,6 +114,7 @@ function updateBar() {
 
 function changeSong() {
     chooseSong();
+    resetDividers();
 
     addTime = 1;
     add.textContent = `Add +${addTime} seconds`;
@@ -117,21 +123,31 @@ function changeSong() {
     player.addEventListener("canplaythrough", setupPlayer, {once: true});
 }
 
+// Inserts dividers into audio progress bar
+function makeDividers() {
+    for (i = 1; i < 16; i += i) {
+        const divider = document.createElement("div");
+        divider.className = "division";
+        divider.style.left = (i / 16) * 100 + "%";
+        divider.id = `d-${i}`;
+    
+        barDiv.insertBefore(divider, barDiv.lastElementChild);
+    }
+}
+
+function resetDividers() {
+    for (i = 1; i < 16; i += i) {
+        const divider = document.getElementById(`d-${i}`);
+        divider.style.background = "rgba(14, 1, 1, 0.8)";
+    }
+}
+
 chooseSong();
 player.volume = 0.2;
 player.addEventListener("canplaythrough", setupPlayer, {once: true});
 
 requestAnimationFrame(updateBar);
-
-// Inserts dividers into audio progress bar
-for (i = 1; i < 16; i += i) {
-    const divider = document.createElement("div");
-    divider.className = "division";
-    divider.style.left = (i / 16) * 100 + "%";
-    divider.id = `d-${i}`;
-
-    barDiv.insertBefore(divider, barDiv.lastElementChild);
-}
+makeDividers();
 
 // Button logic
 play.addEventListener("click", () => {
@@ -149,9 +165,12 @@ play.addEventListener("click", () => {
 change.addEventListener("click", changeSong);
 
 add.addEventListener("click", () => {
+    const divider = document.getElementById(`d-${addTime}`);
+    divider.style.background = "#ff0000b8";
+
     addTime += addTime;
     if (addTime != 16)
-        add.textContent = `Add +${addTime} seconds`
+        add.textContent = `Add +${addTime} seconds`;
     else
         add.disabled = true;
 });
@@ -170,14 +189,15 @@ addEventListener("click", (event) => {
         boxNum = parseInt(songLevel.slice(-1)) - 1;
         lvl = songLevel.slice(0, -2);
     }
-    else 
-        lvl = songLevel;
+    else lvl = songLevel;
 
-    const choice = event.target.closest(".level")
+    const choice = event.target.closest(".level");
 
-    if (choice && choice.id == lvl) {
-        choice.scrollIntoView({behavior: "smooth"});
-        choice.focus();
+    if (!choice) return;
+    choice.scrollIntoView({behavior: "smooth", block: "center"});
+    choice.focus();
+
+    if (choice.id == lvl) {
         alert("YOU WIN");
 
         points += Math.round((100 / 33) / addTime);
@@ -189,10 +209,8 @@ addEventListener("click", (event) => {
     
         play.focus();
     }
-    else if (choice && choice.id != lvl) {
+    else if (choice.id != lvl) {
         // Lose --> Add one second?
-        choice.scrollIntoView({behavior: "smooth"});
-        choice.focus();
     }
 });
 
@@ -218,7 +236,7 @@ searchBar.addEventListener("keyup", () => {
                 res.innerText = lvlP.innerText;
                 
                 res.addEventListener("click", (e) => {
-                    validLevel.click()
+                    validLevel.click();
                 });
 
                 resultList.appendChild(res);
@@ -227,7 +245,10 @@ searchBar.addEventListener("keyup", () => {
             if (list.length == 5) break;
         }
     }
-    
-    
+});
 
+
+modalButton.addEventListener("click", () => {
+    var modal = document.getElementById("modal");
+    modal.style.display = "block";
 });
